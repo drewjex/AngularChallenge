@@ -31,7 +31,7 @@ export class MainComponent implements OnInit {
   }
 
   addNew(): void {
-    const newName = document.querySelector('#companyName').value;
+    const newName = (<HTMLInputElement>document.querySelector('#companyName')).value;
     const newCompany = {
         CompanyName: newName,
         CompanyID: this.randomInt(1000, 100000),
@@ -51,7 +51,7 @@ export class MainComponent implements OnInit {
     this.add(newCompany);
     //this.companies.push(newCompany);
     alert('Added Successfully!');
-    document.querySelector('#companyName').value = '';
+    (<HTMLInputElement>document.querySelector('#companyName')).value = '';
   }
 
   randomInt(min, max) {
@@ -74,10 +74,31 @@ export class MainComponent implements OnInit {
       target = target.parentNode;
     }
 
-    if (target.classList.contains('expanded')) {
-      target.classList.remove('expanded');
-      const input = target.querySelectorAll('input');
+    target.classList.toggle('expanded');
 
+    if (target.classList.contains('expanded')) {
+      target.appendChild(document.createElement('hr'));
+      target.appendChild(document.createElement('br'));
+      for (const key in company) {
+        if (company.hasOwnProperty(key)) {
+            if (key === 'Contacts' || key === 'CompanyID') { continue; }
+            const span = document.createElement('span');
+            span.innerHTML = key;
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.name = key;
+            input.style.width = `100%`;
+            input.value = company[key];
+            target.appendChild(span);
+            target.appendChild(document.createElement('br'));
+            target.appendChild(input);
+            target.appendChild(document.createElement('br'));
+            target.appendChild(document.createElement('br'));
+        }
+      }
+    } else {
+      const input = target.querySelectorAll('input');
+      
       const index = this.companies.findIndex(c => c.CompanyID === company.CompanyID);
       const toUpdate = this.companies[index];
       const history = [];
@@ -108,27 +129,7 @@ export class MainComponent implements OnInit {
       Array.prototype.forEach.call( hr, function( node ) {
         node.parentNode.removeChild( node );
       });
-    } else {
-      target.classList.add('expanded');
-      target.appendChild(document.createElement('hr'));
-      target.appendChild(document.createElement('br'));
-      for (const key in company) {
-        if (company.hasOwnProperty(key)) {
-            if (key === 'Contacts' || key === 'CompanyID') { continue; }
-            const span = document.createElement('span');
-            span.innerHTML = key;
-            const input = document.createElement('input');
-            input.type = 'text';
-            input.name = key;
-            input.style.width = `100%`;
-            input.value = company[key];
-            target.appendChild(span);
-            target.appendChild(document.createElement('br'));
-            target.appendChild(input);
-            target.appendChild(document.createElement('br'));
-            target.appendChild(document.createElement('br'));
-        }
-      }
+    
     }
   }
 

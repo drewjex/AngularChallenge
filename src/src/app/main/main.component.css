@@ -82,8 +82,7 @@ body {
   margin-top:20px;
 }
 
-.expanded {
-  /* height:1000px; */
+.ex-5.card.expanded {
   height:auto;
 }
 
@@ -107,7 +106,6 @@ body {
   padding: 1rem;
   border-radius: 5px;
   width: 100%;
-  height:auto;
   max-width: 25%;
   margin: .5rem;
   box-shadow: 0 2px 3px 0 rgba(0,0,0,.075);
