@@ -4,7 +4,7 @@ Run `npm install` then `npm start` for a dev server. Navigate to `http://localho
 
 ## Other Notes
 
-I seem to always get a 415 Unsupported Media Type error when adding or updating a record using the API. My service appears to be set up correctly - I am not sure whether it is something wrong on my end or with the API.
+I seem to always get a 415 Unsupported Media Type error when adding or updating a record using the API. My service appears to be set up correctly - I am not sure whether it is something wrong on my end or with the API. See /src/src/app/company.service.ts to see the service I am using.
 
 Thanks!
 
