@@ -1,10 +1,26 @@
-<h2>Company Manager 5000</h2>
-
-<ul class="heroes">
-  <li *ngFor="let company of companies">
-    <span class="badge">{{company.CompanyID}}</span> {{company.CompanyName}}
-    <button class="delete" title="delete company"
-    (click)="delete(company)">x</button>
-  </li>
-</ul>
+<div class="ex-9 example">
+  <div class="body">
+    <div class="dark-header">
+      Record Manager 5000
+    </div>
+    <div class='intro'>
+      <div class='intro-container'>
+          <h1>Welcome to Record Manager 5000!</h1>
+          <input type='text' id='companyName' placeholder="Enter Company Name" /><button (click)="addNew()">Add</button>
+      </div>
+    </div>
+    <div class='container'>
+        <div class="ex-5 example">
+            <div class="card c-2" *ngFor="let company of companies" (click)="expand($event, company)">
+                <button class="delete" title="delete company"
+                (click)="delete(company)">x</button>
+              <p class="revenue">{{company.CompanyName}}</p>
+              <p class="label">{{company.CompanyID}}</p>          
+              <div class="line"></div>         
+              <p class="sales">{{company.StreetAddress}}</p>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
 
